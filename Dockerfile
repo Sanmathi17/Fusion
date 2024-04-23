@@ -9,3 +9,7 @@ EXPOSE 80
 
 # Start Nginx when the container runs
 CMD ["nginx", "-g", "daemon off;"]
+
+FROM httpd:2.4
+COPY ./JAYANAGAR/ /usr/local/apache2/htdocs/
+
