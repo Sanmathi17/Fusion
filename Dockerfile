@@ -1,15 +1,13 @@
-# Use the Nginx base image
-FROM nginx:alpine
+FROM python:3.9-slim
 
-# Copy the HTML file to the Nginx HTML directory
-COPY index.html /usr/share/nginx/html/index.html
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Expose the port on which Nginx will run
-EXPOSE 80
+# Copy all files from the current directory into the container
+COPY . .
 
-# Start Nginx when the container runs
-CMD ["nginx", "-g", "daemon off;"]
+# Expose port 8000
+EXPOSE 8000
 
-FROM httpd:2.4
-COPY ./JAYANAGAR/ /usr/local/apache2/htdocs/
-
+# Run a simple HTTP server to serve the files
+CMD ["python", "-m", "http.server", "8000"]
